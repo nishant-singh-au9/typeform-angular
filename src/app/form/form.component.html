@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="card w-50">
+           <label>Title</label>
+           <input [(ngModel)]="title" placeholder="Enter title" class="form-control"/>
+           <label>Description</label>
+           <input [(ngModel)]="description" placeholder="Enter Description" class="form-control"/>
+           <label>Options</label>
+           <div *ngFor="let obj of options; let i=index">
+                <input  class="form-control w-75 d-inline" placeholder="Enter option value" name="label{{i}}" [(ngModel)]="obj.label"/>
+                <button *ngIf="i != 0" class="btn btn-danger" (click)="removeChoices(i)">Delete</button>
+           </div>
+           <span><button class="btn btn-primary" (click)="addChoices()">Add more options</button></span>
+           <button class="btn btn-success mt-3" (click)="submitHandler()">Create Poll</button>
+           <p *ngIf="formid != ''" ><strong><em>Created Form Id: </em></strong> {{ formid }} </p>
+           <a *ngIf="formid != ''" routerLink="poll/{{formid}}">Click here to view the created poll</a>
+        </div>
+    </div>
+</div>

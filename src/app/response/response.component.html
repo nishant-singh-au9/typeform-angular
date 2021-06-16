@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-xs-12">
+            <label for="formid">Enter Formid to see the responses</label>
+            <input class="form-control mb-2" id="formid" [(ngModel)]="formid" />
+            <button class="btn btn-success" (click)="submitHandler()">Get responses</button>
+        </div>
+    </div>
+    <div *ngIf="responses[0]" class="row">
+        <div class="row mb-3">
+            <div class="col-xs-12">
+                <p><strong><em>Title: </em></strong> {{ responses[0].form_response.definition.fields[0].title }}</p>
+                <p><strong><em>Available Options: </em></strong></p>
+                <ul class="list-group">
+                    <li class="list-group-item"
+                    *ngFor="let option of responses[0].form_response.definition.fields[0].choices"
+                    >{{ option.label }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">FormId</th>
+                            <th scope="col">Response</th>
+                            <th scope="col">Submitted At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let response of responses">
+                            <th>{{ response.form_id }}</th>
+                            <td>{{ response.form_response.answers[0].choice.label }}</td>
+                            <td>{{ response.form_response.submitted_at }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
